@@ -1,32 +1,47 @@
 <HTML>
-    <HEAD>
+
+<HEAD>
     <Script>
-    function CalculerMontantTTC()
-    {
-    if (isNaN(Form1.ht.value) == true)
-    {
-    alert('Merci de saisir un montant correct. Calcul impossible.');
-    Form1.ht.value = '0';
-    }
-    else
-    {
-        //form1 c'est le nom de mon formulaire Ht le nom de mon input et value est la valeur dans cette input
-    Form1.tva.value = (Form1.ht.value / 100) * 19.6 ;
-    Form1.ttc.value = Number(Form1.ht.value) + Number(Form1.tva.value) ;
-    }
-    }
+        function CalculerMontantTTC() {
+            if (isNaN(Form1.ht.value) == true) {
+                alert('Merci de saisir un montant correct. Calcul impossible.');
+                Form1.ht.value = '0';
+            } else {
+                //form1 c'est le nom de mon formulaire Ht le nom de mon input et value est la valeur dans cette input
+                Form1.tva.value = (Form1.ht.value / 100) * 19.6;
+                Form1.ttc.value = Number(Form1.ht.value) + Number(Form1.tva.value);
+                Form1.prixboissons.value = Number(Form1.boisson.value) ;
+
+            }
+        }
+        Form1.ttc.value = Number(Form1.ht.value) + Number(Form1.tva.value);
+
+        
     </Script>
-    </HEAD>
-    <BODY onLoad='CalculerMontantTTC()'>
+</HEAD>
+<BODY onfocus='CalculerMontantTTC()'>
     <div id='bloc'>
-    <h2>Calcul de la TVA</h2>
-    <FORM Name='Form1'>
-    Montant hors taxes <input type='text' Name='ht' onKeyUp='CalculerMontantTTC()' Value='0'>
-    <br>
-    Montant TVA (19.6%) <input type ='text' Name='tva'>
-    <br>
-    Montant TTC <input type ='text' Name='ttc'>
-    </FORM>
+        <h2>Calcul de la TVA</h2>
+        <FORM Name='Form1'>
+            Montant hors taxes <input type='text' Name='ht' onKeyUp='CalculerMontantTTC()' Value='0'>
+            <br>
+            Montant TVA (19.6%) <input type='text' Name='tva'>
+            <br>
+            Montant TTC <input type='text' Name='ttc'>
+        </br>
+        Montant TTC <input type='text' Name='prixboissons'>
+            <select name="boisson" onchange="CalculerMontantTTC()">
+                <option value="155"> café </option>
+                <option value="10"> chocolat</option>
+                <option value="3"> Thé</option>
+                <option value="15500"> jus de pomme</option>
+        </FORM>
     </div>
-    </BODY>
-    </HTML>
+    <form action="ticket.php" method="post">
+
+        </select>
+    </form>
+   
+</BODY>
+
+</HTML>
