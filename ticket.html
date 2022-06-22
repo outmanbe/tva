@@ -1,47 +1,53 @@
 <HTML>
 
 <HEAD>
-    <Script>
+    <!-- boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+     <Script>
         function CalculerMontantTTC() {
             if (isNaN(Form1.ht.value) == true) {
                 alert('Merci de saisir un montant correct. Calcul impossible.');
-                Form1.ht.value = '0';
+                Form1.ht.value = 0 ;
             } else {
                 //form1 c'est le nom de mon formulaire Ht le nom de mon input et value est la valeur dans cette input
-                Form1.tva.value = (Form1.ht.value / 100) * 19.6;
-                Form1.ttc.value = Number(Form1.ht.value) + Number(Form1.tva.value);
-                Form1.prixboissons.value = Number(Form1.boisson.value) ;
+                Form1.tva.value = (Form1.boisson.value / 100) * 19.6; //calcul de tva
+                Form1.ttc.value = Number(Form1.boisson.value) + Number(Form1.tva.value);// prix ttc
+                Form1.prixboissons.value = Number(Form1.boisson.value);
 
             }
         }
         Form1.ttc.value = Number(Form1.ht.value) + Number(Form1.tva.value);
-
-        
     </Script>
 </HEAD>
-<BODY onfocus='CalculerMontantTTC()'>
+
+<BODY>
+
+
     <div id='bloc'>
         <h2>Calcul de la TVA</h2>
-        <FORM Name='Form1'>
-            Montant hors taxes <input type='text' Name='ht' onKeyUp='CalculerMontantTTC()' Value='0'>
-            <br>
-            Montant TVA (19.6%) <input type='text' Name='tva'>
-            <br>
-            Montant TTC <input type='text' Name='ttc'>
-        </br>
-        Montant TTC <input type='text' Name='prixboissons'>
+
+<table><tr><td></td><td></td></tr></table>
+
+
+
+        
+        <form Name='Form1'>            
             <select name="boisson" onchange="CalculerMontantTTC()">
                 <option value="155"> café </option>
                 <option value="10"> chocolat</option>
                 <option value="3"> Thé</option>
                 <option value="15500"> jus de pomme</option>
-        </FORM>
-    </div>
-    <form action="ticket.php" method="post">
+            </select>
+            <input type='text' Name='prixboissons'>   <br><br>        
+         <input type='text' onKeyUp='CalculerMontantTTC()' Name='ht' Value='0'> 
+        Montant TVA (19.6%) <input type='text' Name='tva'>  
+        Montant TTC <input type='text' Name='ttc'>
+        
+<button onclick="CalculerMontantTTC()">créer ticket</button>
+        </form>
+    </div>   
 
-        </select>
-    </form>
-   
 </BODY>
 
 </HTML>
